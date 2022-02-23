@@ -91,4 +91,15 @@ class User extends Authenticatable
         */
         return $this->hasOne(Profile::class);
     }
+
+    // AÑADIR LA RELACIÓN UNO A MUCHOS CON posts
+    public function posts(){
+        /* Trae todos los datos de las llaves foráneas,
+         relacionados con un usuario específico */
+        return $this->hasMany('App\Models\Post');
+    }
+
+    public function videos(){
+        return $this->hasMany('App\Models\Video');
+    }
 }
