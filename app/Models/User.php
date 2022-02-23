@@ -102,4 +102,10 @@ class User extends Authenticatable
     public function videos(){
         return $this->hasMany('App\Models\Video');
     }
+
+    public function roles(){
+        /* Se le envía la ruta del modelo de la tabla
+        con la relación many to many */
+        return $this->belongsToMany('App\Models\Role');
+    }
 }
