@@ -58,4 +58,37 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /*
+        Este método permite traer los datos de la foreign key
+        relacionada
+    */
+    public function profile(){
+        /* 
+           * El where() indica que busque el usuario con el id pasado como segundo
+           * argumento y first() indica que traiga el primer registro encontrado.
+           $profile = Profile::where('user_id', $this->id)->first();
+
+           * Para acceder a ese registro se usaría user->profile
+
+            return $profile;
+
+            Esta forma es algo impráctica, por lo que se debe definir la consulta.
+        */
+
+        // Se puede abreviar con:
+        /*
+            Como argumento se hubierar podido usar un string con la ruta del
+            modelo de Profile y así no habría que importar ese modelo en este.
+
+            A tener en cuenta: si la llave foránea o la llave primaria de user no se
+            llamarán, respectivamente, user_id y id, hasOne() no haría la busqueda
+            ya que él hace la busqueda con nombres que cumplan esa nomenclatura.
+
+            Para evitar esto se podría enviar como segundo argumento en cadena el
+            nombre de la foreing key y como tercer argumento, de igual modo, el 
+            nombre de la llave primaria de user.
+        */
+        return $this->hasOne(Profile::class);
+    }
 }
