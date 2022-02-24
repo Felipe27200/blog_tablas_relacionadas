@@ -108,4 +108,14 @@ class User extends Authenticatable
         con la relación many to many */
         return $this->belongsToMany('App\Models\Role');
     }
+
+    public function image(){
+        /*
+            El primer argumento es la ruta del modelo, y el segundo
+            es el método que genera la relación polimórfica entre las
+            tablas.
+        */
+        return $this ->morphOne('App\Models\Image', 'imageable');
+    }
+
 }
